@@ -8,11 +8,13 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] private float timeBetweenAttacks = 1f;
 
     [SerializeField] private Animator anim;
+    [SerializeField] private EnemyMove enemyMove;
     private GameObject player;
     private bool playerInRange;
     [SerializeField] private BoxCollider[] weaponColliders;
     void Start()
     {
+        enemyMove = GetComponent<EnemyMove>();
         weaponColliders = GetComponentsInChildren<BoxCollider>();
         player = GameManager.instance.Player;
         anim = GetComponentInChildren<Animator>();
@@ -21,15 +23,23 @@ public class EnemyAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(transform.position, player.transform.position) < range)
+        if (enemyMove.target != null)
         {
-            playerInRange = true;
-            StartCoroutine(Attack());
-        }else
-        {
-            playerInRange = false;
+            if (Vector3.Distance(transform.position, player.transform.position) < range)
+            {
+                playerInRange = true;
+                anim.SetBool("isRunning", false);
+                StartCoroutine(Attack());
+
+            }
+            else
+            {
+                anim.SetBool("isRunning", true);
+                playerInRange = false;
+            }
+            print(playerInRange);
         }
-        print(playerInRange);
+        
     }
     IEnumerator Attack()
     {
