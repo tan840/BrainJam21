@@ -13,6 +13,8 @@ public class PlayerController : MonoBehaviour
     CharacterController characterController;
     [SerializeField]Animator anim;
 
+    public GameObject ParticleSlashEffect;
+
 
     private void Start()
     {
@@ -23,11 +25,15 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MovePlayer();
-        if (Input.GetMouseButton(0))
+        if (!GameManager.instance.GameOver)
         {
-            Attack();
+            MovePlayer();
+            if (Input.GetMouseButton(0))
+            {
+                Attack();
+            }
         }
+        
     }
 
     private void Attack()
@@ -49,11 +55,20 @@ public class PlayerController : MonoBehaviour
             float targetAngle = Mathf.Atan2(direction.x, direction.z)* Mathf.Rad2Deg;
             float smoothAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, smoothAngle,0f);
-            characterController.Move(direction * moveSpeed * Time.deltaTime);
+            characterController.SimpleMove(direction * moveSpeed );
         }
         else
         {
             anim.SetBool("isRunning", false);
         }
+    }
+
+    void SlashParticleBegin()
+    {
+        ParticleSlashEffect.SetActive(true);
+    }
+    void SlashParticleEnd()
+    {
+        ParticleSlashEffect.SetActive(false);
     }
 }

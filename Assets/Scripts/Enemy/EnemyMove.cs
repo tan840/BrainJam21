@@ -23,8 +23,16 @@ public class EnemyMove : MonoBehaviour
     {
         if (target!=null)
         {
+            if (!GameManager.instance.GameOver)
+            {
+                navMesh.SetDestination(target.position);
+            }
+            else
+            {
+                navMesh.enabled = false;
+                // play Idle Animation
+            }
             
-            navMesh.SetDestination(target.position);
         }
     }
 }
