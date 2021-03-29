@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
 
     CharacterController characterController;
     [SerializeField]Animator anim;
-    [SerializeField] float rayCastRange = 10f;
+    [SerializeField] float rayCastRange = 100f;
 
     public GameObject ParticleSlashEffect;
     public GameObject rayCastPoint;

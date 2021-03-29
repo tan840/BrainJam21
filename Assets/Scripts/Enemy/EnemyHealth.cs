@@ -15,6 +15,7 @@ public class EnemyHealth : MonoBehaviour
     Rigidbody rigidbody;
     [SerializeField] CapsuleCollider enemyCollider;
     [SerializeField] SphereCollider territory;
+    [SerializeField] CapsuleCollider deadCollider;
     [SerializeField] float currentHealth;
 
 
@@ -33,6 +34,7 @@ public class EnemyHealth : MonoBehaviour
         currentHealth = startingEnemyHealth;
         enemyCollider = GetComponent<CapsuleCollider>();
         territory = GetComponentInChildren<SphereCollider>();
+        
 
         isAlive = true;
 
@@ -74,8 +76,9 @@ public class EnemyHealth : MonoBehaviour
     void KillEnemy()
     {
         
-        //enemyCollider.enabled = false;
+        enemyCollider.enabled = false;
         territory.enabled = false;
+        deadCollider.enabled = true;
         //navMesh.enabled = false;
         // enemy dead animation
         anim.SetBool("isDead",true);
