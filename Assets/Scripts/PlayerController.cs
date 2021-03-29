@@ -36,6 +36,11 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    void GrabEnemyBody()
+    {
+
+    }
+
     private void Attack()
     {
         anim.Play("SwordAttack_1");

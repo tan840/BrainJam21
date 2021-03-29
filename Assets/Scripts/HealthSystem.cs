@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class HealthSystem : MonoBehaviour
 {
     [SerializeField] int startingHealth = 100;
@@ -12,16 +12,25 @@ public class HealthSystem : MonoBehaviour
     private Animator anim;
     [SerializeField] int currentHealth;
 
+    [SerializeField] Image uiHealthPReivew;
+
+
     private void Start()
     {
+        uiHealthPReivew.GetComponent<Image>();
         anim = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
         currentHealth = startingHealth;
     }
-
+    
     private void Update()
     {
         timer += Time.deltaTime;
+
+
+       // ui();
+        uiHealthPReivew.fillAmount = currentHealth / 100f;
+        
 
     }
 
@@ -36,6 +45,11 @@ public class HealthSystem : MonoBehaviour
             }
         }
     }
+    [ExecuteInEditMode]
+ /*   private void ui()
+    {
+        // uiHealthPReivew.fillAmount += startingHealth;
+    }*/
     void TakeHit()
     {
         if (currentHealth>0)
