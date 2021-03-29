@@ -28,7 +28,7 @@ public class HealthSystem : MonoBehaviour
         timer += Time.deltaTime;
 
 
-       // ui();
+       
         uiHealthPReivew.fillAmount = currentHealth / 100f;
         
 
@@ -45,11 +45,7 @@ public class HealthSystem : MonoBehaviour
             }
         }
     }
-    [ExecuteInEditMode]
- /*   private void ui()
-    {
-        // uiHealthPReivew.fillAmount += startingHealth;
-    }*/
+
     void TakeHit()
     {
         if (currentHealth>0)

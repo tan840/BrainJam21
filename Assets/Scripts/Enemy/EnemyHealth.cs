@@ -74,7 +74,7 @@ public class EnemyHealth : MonoBehaviour
     void KillEnemy()
     {
         
-        enemyCollider.enabled = false;
+        //enemyCollider.enabled = false;
         territory.enabled = false;
         //navMesh.enabled = false;
         // enemy dead animation

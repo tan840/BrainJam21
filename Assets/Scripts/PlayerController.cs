@@ -12,8 +12,12 @@ public class PlayerController : MonoBehaviour
 
     CharacterController characterController;
     [SerializeField]Animator anim;
+    [SerializeField] float rayCastRange = 10f;
 
     public GameObject ParticleSlashEffect;
+    public GameObject rayCastPoint;
+    public bool grabbedEnemy;
+    public GameObject deadBody;
 
 
     private void Start()
@@ -32,12 +36,31 @@ public class PlayerController : MonoBehaviour
             {
                 Attack();
             }
+            if (Input.GetKeyDown(KeyCode.H))
+            {
+                GrabEnemyBody();
+            }
         }
         
     }
 
     void GrabEnemyBody()
     {
+        Ray ray = new Ray(rayCastPoint.transform.position, rayCastPoint.transform.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, rayCastRange))
+        {
+            if (hit.collider.tag == "Enemy")
+            {
+                deadBody = hit.transform.gameObject;
+                grabbedEnemy = true;
+                deadBody.transform.SetParent(this.transform);
+                deadBody.GetComponent<Rigidbody>().isKinematic = true;
+                deadBody.GetComponent<Rigidbody>().useGravity = false;
+            }
+            
+        }
 
     }
 
