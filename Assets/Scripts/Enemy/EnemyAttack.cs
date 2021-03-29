@@ -9,8 +9,9 @@ public class EnemyAttack : MonoBehaviour
 
     [SerializeField] private Animator anim;
     [SerializeField] private EnemyMove enemyMove;
+    EnemyHealth enemyHealth;
     private GameObject player;
-    private bool playerInRange;
+    public bool playerInRange;
     [SerializeField] private BoxCollider[] weaponColliders;
     void Start()
     {
@@ -18,12 +19,13 @@ public class EnemyAttack : MonoBehaviour
         weaponColliders = GetComponentsInChildren<BoxCollider>();
         player = GameManager.instance.Player;
         anim = GetComponentInChildren<Animator>();
+        enemyHealth = GetComponent<EnemyHealth>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (enemyMove.target != null)
+        if (enemyMove.target != null && enemyHealth.IsAlive)
         {
             if (Vector3.Distance(transform.position, player.transform.position) < range)
             {
@@ -37,13 +39,13 @@ public class EnemyAttack : MonoBehaviour
                 anim.SetBool("isRunning", true);
                 playerInRange = false;
             }
-            print(playerInRange);
+            //print(playerInRange);
         }
         
     }
     IEnumerator Attack()
     {
-        if (playerInRange && !GameManager.instance.GameOver)
+        if (playerInRange && !GameManager.instance.GameOver && enemyHealth.IsAlive)
         {
             anim.Play("Zombie Attack");
             yield return new WaitForSeconds(timeBetweenAttacks);

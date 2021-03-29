@@ -23,7 +23,7 @@ public class EnemyMove : MonoBehaviour
     {
         if (target!=null)
         {
-            if (!GameManager.instance.GameOver)
+            if (!GameManager.instance.GameOver && navMesh.enabled == true)
             {
                 navMesh.SetDestination(target.position);
             }
