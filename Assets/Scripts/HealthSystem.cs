@@ -54,16 +54,22 @@ public class HealthSystem : MonoBehaviour
             //TODO::play player take hit animation
             anim.Play("Big Hit To Head");
         }
-        else if (currentHealth<=0)
+        if (currentHealth<=0)
         {
+            Debug.Log("LOL");
+            anim.SetBool("Dead", true);
             KillPlayer();
         }
     }
 
     void KillPlayer()
     {
+        
+        
         GameManager.instance.PlayerHit(0f);
         //play death animation
+       
+        Debug.Log("THE PLAYER HAS DIED!!!");
         //anim.Play("Head Hit");
         characterController.enabled = false;
     }

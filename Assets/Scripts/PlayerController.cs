@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public GameObject rayCastPoint;
     public bool grabbedEnemy;
     public GameObject deadBody;
+    public Transform cam;
 
 
     private void Start()
@@ -96,10 +97,11 @@ public class PlayerController : MonoBehaviour
         if (direction.magnitude>0.2)
         {
             anim.SetBool("isRunning", true);
-            float targetAngle = Mathf.Atan2(direction.x, direction.z)* Mathf.Rad2Deg;
+            float targetAngle = Mathf.Atan2(direction.x, direction.z)* Mathf.Rad2Deg + cam.eulerAngles.y;
             float smoothAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0f, smoothAngle,0f);
-            characterController.SimpleMove(direction * moveSpeed );
+            Vector3 moveDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
+            characterController.SimpleMove(moveDir.normalized * moveSpeed );
         }
         else
         {
