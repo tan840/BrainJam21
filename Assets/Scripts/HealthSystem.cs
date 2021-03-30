@@ -14,7 +14,6 @@ public class HealthSystem : MonoBehaviour
 
     [SerializeField] Image uiHealthPReivew;
 
-
     private void Start()
     {
         uiHealthPReivew.GetComponent<Image>();
@@ -53,7 +52,7 @@ public class HealthSystem : MonoBehaviour
             currentHealth -= 10;
             GameManager.instance.PlayerHit(currentHealth);
             //TODO::play player take hit animation
-            
+            anim.Play("Big Hit To Head");
         }
         else if (currentHealth<=0)
         {
@@ -65,6 +64,7 @@ public class HealthSystem : MonoBehaviour
     {
         GameManager.instance.PlayerHit(0f);
         //play death animation
+        //anim.Play("Head Hit");
         characterController.enabled = false;
     }
 

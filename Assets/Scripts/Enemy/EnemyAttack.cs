@@ -25,6 +25,10 @@ public class EnemyAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (enemyMove.target == null)
+        {
+            anim.SetBool("isRunning", false);
+        }
         if (enemyMove.target != null && enemyHealth.IsAlive)
         {
             if (Vector3.Distance(transform.position, player.transform.position) < range)
@@ -39,8 +43,9 @@ public class EnemyAttack : MonoBehaviour
                 anim.SetBool("isRunning", true);
                 playerInRange = false;
             }
-            //print(playerInRange);
+            print(playerInRange);
         }
+        
         
     }
     IEnumerator Attack()

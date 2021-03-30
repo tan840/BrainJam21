@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 6f;
@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     CharacterController characterController;
     [SerializeField]Animator anim;
     [SerializeField] float rayCastRange = 100f;
+    [SerializeField] BoxCollider swordCollider;
 
     public GameObject ParticleSlashEffect;
     public GameObject rayCastPoint;
@@ -23,25 +24,39 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         characterController = GetComponent<CharacterController>();
+        swordCollider = GetComponentInChildren<BoxCollider>();
         anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
+              
         if (!GameManager.instance.GameOver)
         {
             MovePlayer();
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0) )
             {
-                Attack();
+                    Attack();
+                
+               
+                
             }
             if (Input.GetKeyDown(KeyCode.H))
             {
                 GrabEnemyBody();
             }
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                ReleaseEnemy();
+            }
         }
         
+    }
+
+    void ReleaseEnemy()
+    {
+        deadBody.transform.SetParent(null);
     }
 
     void GrabEnemyBody()
@@ -66,7 +81,8 @@ public class PlayerController : MonoBehaviour
 
     private void Attack()
     {
-        anim.Play("SwordAttack_1");
+            anim.Play("SwordAttack_1");
+        
 
 
     }
@@ -99,4 +115,14 @@ public class PlayerController : MonoBehaviour
     {
         ParticleSlashEffect.SetActive(false);
     }
+
+    void SwordColliderOn()
+    {
+        swordCollider.enabled = true;
+    }
+    void SwordColliderOff()
+    {
+        swordCollider.enabled = false;
+    }
+ 
 }

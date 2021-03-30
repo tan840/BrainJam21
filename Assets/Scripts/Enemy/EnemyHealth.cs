@@ -62,7 +62,7 @@ public class EnemyHealth : MonoBehaviour
         if (currentHealth > 0)
         {
             isAlive = false;
-            //anim.Play() damage animation
+            anim.Play("Big Hit To Head");
             currentHealth -= 10;
         }
         if (currentHealth <= 0)
@@ -78,12 +78,17 @@ public class EnemyHealth : MonoBehaviour
         
         enemyCollider.enabled = false;
         territory.enabled = false;
-        deadCollider.enabled = true;
+        
+        Invoke("ColliderAfterDeathEnable", 1f);
         //navMesh.enabled = false;
         // enemy dead animation
         anim.SetBool("isDead",true);
         print("dead");
         navMesh.enabled = false;
         
+    }
+    void ColliderAfterDeathEnable()
+    {
+        deadCollider.enabled = true;
     }
 }

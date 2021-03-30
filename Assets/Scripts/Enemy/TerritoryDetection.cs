@@ -21,17 +21,7 @@ public class TerritoryDetection : MonoBehaviour
 
         }
     }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-
-            enemyParent.target = null;
-            enemyParent.CancelInvoke();
-
-
-        }
-    }
+ 
 
 
 }
