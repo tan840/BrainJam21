@@ -14,12 +14,20 @@ public class HealthSystem : MonoBehaviour
 
     [SerializeField] Image uiHealthPReivew;
 
+
+    private void OnEnable()
+    {
+        anim.SetBool("Dead", false);
+        currentHealth += startingHealth;
+    }
     private void Start()
     {
+        
         uiHealthPReivew.GetComponent<Image>();
         anim = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();
-        currentHealth = startingHealth;
+
+       
     }
     
     private void Update()
@@ -57,7 +65,7 @@ public class HealthSystem : MonoBehaviour
         if (currentHealth<=0)
         {
             Debug.Log("LOL");
-            anim.SetBool("Dead", true);
+            
             KillPlayer();
         }
     }
@@ -71,6 +79,7 @@ public class HealthSystem : MonoBehaviour
        
         Debug.Log("THE PLAYER HAS DIED!!!");
         //anim.Play("Head Hit");
+        anim.SetBool("Dead", true);
         characterController.enabled = false;
     }
 

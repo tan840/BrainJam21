@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.Timeline;
 public class PowerDIrectiorController : MonoBehaviour
 {
-    [SerializeField]TimelineAsset no;
+    [SerializeField]TimelinePlayable no;
     // Start is called before the first frame update
     void Start()
     {
-        
+       
     }
 
     // Update is called once per frame

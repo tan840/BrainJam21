@@ -21,9 +21,11 @@ public class PlayerController : MonoBehaviour
     public GameObject deadBody;
     public Transform cam;
 
+    [SerializeField] Text enemy;
 
     private void Start()
     {
+        enemy.enabled = false;
         characterController = GetComponent<CharacterController>();
         swordCollider = GetComponentInChildren<BoxCollider>();
         anim = GetComponent<Animator>();
@@ -69,11 +71,18 @@ public class PlayerController : MonoBehaviour
         {
             if (hit.collider.tag == "Enemy")
             {
+                enemy.enabled = true;
                 deadBody = hit.transform.gameObject;
                 grabbedEnemy = true;
                 deadBody.transform.SetParent(this.transform);
                 deadBody.GetComponent<Rigidbody>().isKinematic = true;
                 deadBody.GetComponent<Rigidbody>().useGravity = false;
+            }
+            else {
+
+
+                enemy.enabled = false;
+            
             }
             
         }
