@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     public GameObject deadBody;
     public Transform cam;
 
-    [SerializeField] Text enemy;
+    public Text enemy;
 
     private void Start()
     {

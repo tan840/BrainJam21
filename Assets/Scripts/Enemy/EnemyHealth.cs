@@ -62,7 +62,7 @@ public class EnemyHealth : MonoBehaviour
         if (currentHealth > 0)
         {
             isAlive = false;
-            anim.Play("Big Hit To Head");
+            //anim.Play("Big Hit To Head");
             currentHealth -= 10;
         }
         if (currentHealth <= 0)

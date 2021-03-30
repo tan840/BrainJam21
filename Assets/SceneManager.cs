@@ -32,11 +32,10 @@ public class SceneManager : MonoBehaviour
 
     #region Button Functions
 
-    public void Space_Menu_Play()
+   public void LoadNextScene()
     {
-
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
     }
-
     #endregion Button Functions
 
 }

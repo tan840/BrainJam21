@@ -25,17 +25,15 @@ public class EnemyAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (enemyMove.target == null)
-        {
-            anim.SetBool("isRunning", false);
-        }
+        
         if (enemyMove.target != null && enemyHealth.IsAlive)
         {
             if (Vector3.Distance(transform.position, player.transform.position) < range)
             {
+                StartCoroutine(Attack());
                 playerInRange = true;
                 anim.SetBool("isRunning", false);
-                StartCoroutine(Attack());
+                
 
             }
             else
@@ -50,10 +48,13 @@ public class EnemyAttack : MonoBehaviour
     }
     IEnumerator Attack()
     {
-        if (playerInRange && !GameManager.instance.GameOver && enemyHealth.IsAlive)
+        if (!GameManager.instance.GameOver && playerInRange)
         {
-            anim.Play("Zombie Attack");
+            print("zombie");
+            anim.Play("Zombie Attack" , 2);
+            
             yield return new WaitForSeconds(timeBetweenAttacks);
+            print("hit");
         }
         yield return null;
     }

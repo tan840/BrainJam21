@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject player;
     private bool gameOver = false;
 
+    //public float maxSoulCount;
     public bool GameOver
     {
         get { return gameOver; }
