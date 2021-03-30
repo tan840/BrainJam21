@@ -18,11 +18,11 @@ public class HealthSystem : MonoBehaviour
     private void OnEnable()
     {
         anim.SetBool("Dead", false);
-        currentHealth += startingHealth;
+        
     }
     private void Start()
     {
-        
+        currentHealth = startingHealth;
         uiHealthPReivew.GetComponent<Image>();
         anim = GetComponent<Animator>();
         characterController = GetComponent<CharacterController>();

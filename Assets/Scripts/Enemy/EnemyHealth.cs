@@ -79,7 +79,7 @@ public class EnemyHealth : MonoBehaviour
         enemyCollider.enabled = false;
         territory.enabled = false;
         
-        Invoke("ColliderAfterDeathEnable", 1f);
+        Invoke("ColliderAfterDeathEnable", 1.5f);
         //navMesh.enabled = false;
         // enemy dead animation
         anim.SetBool("isDead",true);

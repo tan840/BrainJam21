@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
     void ReleaseEnemy()
     {
         deadBody.transform.SetParent(null);
+        enemy.text = "";
     }
 
     void GrabEnemyBody()
@@ -72,6 +73,7 @@ public class PlayerController : MonoBehaviour
             if (hit.collider.tag == "Enemy")
             {
                 enemy.enabled = true;
+                enemy.text = "press R to release Dead Body";
                 deadBody = hit.transform.gameObject;
                 grabbedEnemy = true;
                 deadBody.transform.SetParent(this.transform);
@@ -82,7 +84,7 @@ public class PlayerController : MonoBehaviour
 
 
                 enemy.enabled = false;
-            
+                enemy.text = "press H to hold Dead Body";
             }
             
         }
