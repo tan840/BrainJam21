@@ -60,7 +60,7 @@ public class HealthSystem : MonoBehaviour
         }
         if (currentHealth<=0)
         {
-            Debug.Log("LOL");
+            //Debug.Log("LOL");
             
             KillPlayer();
         }
@@ -73,10 +73,15 @@ public class HealthSystem : MonoBehaviour
         GameManager.instance.PlayerHit(0f);
         //play death animation
        
-        Debug.Log("THE PLAYER HAS DIED!!!");
+        //Debug.Log("THE PLAYER HAS DIED!!!");
         //anim.Play("Head Hit");
         anim.SetTrigger("Dead");
         characterController.enabled = false;
+        Invoke("ResetLevel",2f);
+    }
+    void ResetLevel()
+    {
+        SceneManager.instance.LoadNextScene("MainMenu");
     }
 
 }

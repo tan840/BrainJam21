@@ -30,12 +30,18 @@ public class SceneManager : MonoBehaviour
         }
     }
 
-    #region Button Functions
+    #region sceneTransitions
 
    public void LoadNextScene()
     {
+        
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
     }
-    #endregion Button Functions
+    public void LoadNextScene(string name)
+    {
+
+        UnityEngine.SceneManagement.SceneManager.LoadScene(name);
+    }
+    #endregion 
 
 }
