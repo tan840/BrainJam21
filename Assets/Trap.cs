@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+
 public class Trap : MonoBehaviour
 {
 
@@ -11,8 +11,8 @@ public class Trap : MonoBehaviour
     private void Update()
     {
         if (SoalCount >= maxSoulCount) {
-          //  SceneManager.instance.LoadNextScene();
-            UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
+            SceneManager.instance.LoadNextScene();
+
         }
     }
     private void OnTriggerEnter(Collider col)

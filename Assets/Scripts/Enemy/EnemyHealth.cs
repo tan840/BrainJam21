@@ -7,7 +7,7 @@ public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] int startingEnemyHealth = 50;
     [SerializeField] float timeBetweenAttack = 1f;
-    public HealthSystem plrHealth;
+
     float timer = 0f;
     Animator anim;
     EnemyAttack enemyAttack;
@@ -16,7 +16,6 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] CapsuleCollider enemyCollider;
     [SerializeField] SphereCollider territory;
     [SerializeField] CapsuleCollider deadCollider;
-    [SerializeField] BoxCollider[] weaponHand;
     [SerializeField] float currentHealth;
 
 
@@ -80,28 +79,16 @@ public class EnemyHealth : MonoBehaviour
         enemyCollider.enabled = false;
         territory.enabled = false;
         
-        Invoke("ColliderAfterDeathEnable", 2f);
-
+        Invoke("ColliderAfterDeathEnable", 1.5f);
         //navMesh.enabled = false;
         // enemy dead animation
         anim.SetBool("isDead",true);
         print("dead");
         navMesh.enabled = false;
-        WeaponColliderAfterDeathEnable();
-
-
+        
     }
-    public void ColliderAfterDeathEnable()
+    void ColliderAfterDeathEnable()
     {
         deadCollider.enabled = true;
-    }
-
-    public void WeaponColliderAfterDeathEnable()
-    {
-        foreach (BoxCollider item in weaponHand)
-        {
-            item.enabled = false;
-            print("collider off");
-        }
     }
 }

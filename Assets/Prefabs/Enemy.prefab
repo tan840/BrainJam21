@@ -352,13 +352,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startingEnemyHealth: 50
   timeBetweenAttack: 1
-  plrHealth: {fileID: 0}
   enemyCollider: {fileID: 0}
   territory: {fileID: 0}
   deadCollider: {fileID: 1780519488}
-  weaponHand:
-  - {fileID: 848426074}
-  - {fileID: 1470746749}
   currentHealth: 0
 --- !u!95 &3067611133097456066
 Animator:

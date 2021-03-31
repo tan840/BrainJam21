@@ -41,7 +41,7 @@ public class EnemyAttack : MonoBehaviour
                 anim.SetBool("isRunning", true);
                 playerInRange = false;
             }
-            //print(playerInRange);
+            print(playerInRange);
         }
         
         
@@ -50,15 +50,11 @@ public class EnemyAttack : MonoBehaviour
     {
         if (!GameManager.instance.GameOver && playerInRange)
         {
-            //print("zombie");
-            anim.Play("Zombie Attack", 1);
+            print("zombie");
+            anim.Play("Zombie Attack" , 2);
             
             yield return new WaitForSeconds(timeBetweenAttacks);
-            //print("hit");
-        }
-        else if (GameManager.instance.GameOver)
-        {
-            anim.Play("Zombie Idle");
+            print("hit");
         }
         yield return null;
     }
