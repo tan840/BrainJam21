@@ -26,6 +26,9 @@ public class EnemyHealth : MonoBehaviour
         get { return isAlive; }
     }
 
+    /// <summary>
+    /// Enemy health System 
+    /// </summary>
     void Start()
     {
         enemyAttack = GetComponent<EnemyAttack>();
@@ -76,7 +79,7 @@ public class EnemyHealth : MonoBehaviour
     }
     void KillEnemy()
     {
-        
+        SoundManager.instance.Play("Dead");
         enemyCollider.enabled = false;
         territory.enabled = false;
         
@@ -85,7 +88,7 @@ public class EnemyHealth : MonoBehaviour
         //navMesh.enabled = false;
         // enemy dead animation
         anim.SetBool("isDead",true);
-        print("dead");
+        //print("dead");
         navMesh.enabled = false;
         WeaponColliderAfterDeathEnable();
 
@@ -101,7 +104,7 @@ public class EnemyHealth : MonoBehaviour
         foreach (BoxCollider item in weaponHand)
         {
             item.enabled = false;
-            print("collider off");
+            //print("collider off");
         }
     }
 }

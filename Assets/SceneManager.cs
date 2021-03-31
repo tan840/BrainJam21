@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 public class SceneManager : MonoBehaviour
 {
     public static SceneManager instance;
-
+    /// <summary>
+    /// This class is used for scene transions
+    /// </summary>
     private void Awake()
     {
         if (instance == null)
@@ -25,7 +27,7 @@ public class SceneManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                UnityEngine.SceneManagement.SceneManager.LoadScene("Level1");
+                UnityEngine.SceneManagement.SceneManager.LoadScene("Level0");
             }
         }
     }

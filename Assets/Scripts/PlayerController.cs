@@ -16,12 +16,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] BoxCollider swordCollider;
 
     public GameObject ParticleSlashEffect;
-    public GameObject rayCastPoint;
+    public GameObject rayCastPoint;//ray cast for the grab mechanics
+    public GameObject enemyCheck;//ray cast for the checking enemy in front
     public bool grabbedEnemy;
     public GameObject deadBody;
     public Transform cam;
 
     public Text enemy;
+
+    /// <summary>
+    /// Player Movement and animation in one script for the lack of time
+    /// </summary>
 
     private void Start()
     {
@@ -34,7 +39,9 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-              
+        CheckEnemyInFront(); //check If dead enemy in front
+
+
         if (!GameManager.instance.GameOver)
         {
             MovePlayer();
@@ -55,6 +62,30 @@ public class PlayerController : MonoBehaviour
             }
         }
         
+    }
+
+    void CheckEnemyInFront()
+    {
+        Ray ray = new Ray(enemyCheck.transform.position, enemyCheck.transform.forward);
+        RaycastHit hit;
+
+        if (Physics.Raycast(ray, out hit, rayCastRange))
+        {
+            if (hit.collider.tag == "Enemy")
+            {
+                if(!hit.transform.gameObject.GetComponent<EnemyHealth>().IsAlive)
+                {
+                    enemy.text = "press H to hold Dead Body";
+                }
+                
+            }
+            
+
+        }
+        else
+        {
+            enemy.text = "";
+        }
     }
 
     void ReleaseEnemy()

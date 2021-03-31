@@ -22,11 +22,13 @@ public class Trap : MonoBehaviour
     private void OnTriggerEnter(Collider col)
     {
         if (col.gameObject.tag == "Enemy") {
-
+            
             Destroy(col.gameObject);
             SoulCount++;
             particleEffectSplash.SetActive(true);
             Invoke("ParticleSlashDeactive", 3);
+            SoundManager.instance.Play("Devil Laugh");
+
 
 
         }
@@ -44,6 +46,9 @@ public class Trap : MonoBehaviour
             
         }
     }
+
+    //the blood effect after sacrifice
+
     void ParticleSlashDeactive()
     {
         particleEffectSplash.SetActive(false);

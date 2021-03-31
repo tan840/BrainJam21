@@ -11,16 +11,22 @@ public class EnemyMove : MonoBehaviour
     [SerializeField] private NavMeshAgent navMesh;
     private Animator anim;
 
-
+    /// <summary>
+    /// Movement for the enemy zombies
+    /// </summary>
     private void Start()
     {
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
         navMesh = GetComponent<NavMeshAgent>();
 
     }
 
     private void Update()
     {
+        if (target == null)
+        {
+            anim.Play("Zombie Idle");
+        }
         if (target!=null)
         {
             if (!GameManager.instance.GameOver && navMesh.enabled == true)

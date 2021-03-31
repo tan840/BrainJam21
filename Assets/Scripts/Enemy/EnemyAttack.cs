@@ -13,11 +13,15 @@ public class EnemyAttack : MonoBehaviour
     private GameObject player;
     public bool playerInRange;
     [SerializeField] private BoxCollider[] weaponColliders;
+
+    /// <summary>
+    /// Attack system for the enemies
+    /// </summary>
     void Start()
     {
         enemyMove = GetComponent<EnemyMove>();
         weaponColliders = GetComponentsInChildren<BoxCollider>();
-        player = GameManager.instance.Player;
+        player = GameObject.FindGameObjectWithTag("Player");
         anim = GetComponentInChildren<Animator>();
         enemyHealth = GetComponent<EnemyHealth>();
     }
@@ -26,7 +30,7 @@ public class EnemyAttack : MonoBehaviour
     void Update()
     {
         
-        if (enemyMove.target != null && enemyHealth.IsAlive)
+        if (enemyMove.target != null && enemyHealth.IsAlive )
         {
             if (Vector3.Distance(transform.position, player.transform.position) < range)
             {
@@ -54,7 +58,7 @@ public class EnemyAttack : MonoBehaviour
             anim.Play("Zombie Attack", 1);
             
             yield return new WaitForSeconds(timeBetweenAttacks);
-            //print("hit");
+            
         }
         else if (GameManager.instance.GameOver)
         {
