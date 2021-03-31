@@ -10719,7 +10719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e66be9e07a40dcc4586a38c166cee43e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 25
+  moveSpeed: 30
   turnSmoothTime: 0.08
   turnSmoothVelocity: 0
   anim: {fileID: 0}

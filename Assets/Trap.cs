@@ -5,12 +5,16 @@ using UnityEngine.SceneManagement;
 public class Trap : MonoBehaviour
 {
 
-    public int SoalCount = 0;
+    public int SoulCount = 0;
     public int maxSoulCount = 0;
+    [SerializeField] GameObject particleEffectSplash;
+    /// <summary>
+    /// This class is used to count the number of body sacrificed in the circle
+    /// </summary>
 
     private void Update()
     {
-        if (SoalCount >= maxSoulCount) {
+        if (SoulCount >= maxSoulCount) {
           //  SceneManager.instance.LoadNextScene();
             UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex + 1);
         }
@@ -20,15 +24,28 @@ public class Trap : MonoBehaviour
         if (col.gameObject.tag == "Enemy") {
 
             Destroy(col.gameObject);
-            SoalCount++;
-            Debug.Log(SoalCount);
+            SoulCount++;
+            particleEffectSplash.SetActive(true);
+            Invoke("ParticleSlashDeactive", 3);
+
+
         }
         else if (col.gameObject.tag == "Player")
         {
            GameObject temp = col.gameObject.GetComponent<PlayerController>().deadBody;
-            Destroy(temp);
-            col.gameObject.GetComponent<PlayerController>().deadBody = null;
-            col.gameObject.GetComponent<PlayerController>().enemy.text = "";
+            if (temp != null)
+            {
+                Destroy(temp);
+                col.gameObject.GetComponent<PlayerController>().deadBody = null;
+                col.gameObject.GetComponent<PlayerController>().enemy.text = "";
+                particleEffectSplash.SetActive(true);
+                Invoke("ParticleSlashDeactive", 3);
+            }
+            
         }
+    }
+    void ParticleSlashDeactive()
+    {
+        particleEffectSplash.SetActive(false);
     }
 }
